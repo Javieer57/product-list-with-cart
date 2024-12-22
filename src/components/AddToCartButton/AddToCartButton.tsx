@@ -6,7 +6,7 @@ interface Props {
 export const AddToCartButton = ({ name, handleClick }: Props) => {
   return (
     <button
-      className="rounded-full bg-white py-2 px-6 flex gap-2 border border-red text-rose-900 hover:text-red items-center font-semibold transition-colors"
+      className="rounded-full bg-white py-2 px-6 flex gap-2 border w-full max-w-44 border-red text-rose-900 hover:text-red items-center font-semibold transition-colors"
       aria-label={`Add ${name} to cart`}
       onClick={() => handleClick(1)}
     >

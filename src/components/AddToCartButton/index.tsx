@@ -14,7 +14,7 @@ const AddToCartWrapper = ({ name }: Props) => {
   }, []);
 
   return (
-    <div className="absolute bottom-0 px-11 w-full flex justify-center">
+    <div className="absolute bottom-0 w-full flex justify-center">
       {quantity === 0 ? (
         <AddToCartButton name={name} handleClick={handleClick} />
       ) : (
