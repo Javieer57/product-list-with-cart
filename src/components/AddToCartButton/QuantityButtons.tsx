@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { Minus } from "./icons/Minus";
-import { Plus } from "./icons/Plus";
+import { Minus } from "../icons/Minus";
+import { Plus } from "../icons/Plus";
 
 interface Props {
   name: string;

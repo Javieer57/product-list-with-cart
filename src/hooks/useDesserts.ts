@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import mockData from "../../public/assets/mock/desserts.json";
+import mockData from "../assets/mock/desserts.json";
 import { DessertData } from "../types/dessert";
 
 const fetchMockData = (): Promise<DessertData[]> => {
