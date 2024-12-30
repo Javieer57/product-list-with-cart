@@ -1,4 +1,5 @@
 import { DessertsGrid } from "./components/DessertsGrid";
+import { Resume } from "./components/Resume";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         <DessertsGrid />
       </section>
       <section className="md:col-span-1">
-        <h2 className="font-bold text-2xl">Your Cart</h2>
+        <Resume />
       </section>
     </main>
   );
