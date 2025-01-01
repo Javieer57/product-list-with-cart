@@ -21,11 +21,14 @@ export const Resume = () => {
     </div>
   );
 };
+
 const CarbonNeutralAdvertise = () => {
   return (
-    <p className="flex items-center justify-center gap-2 rounded-lg bg-rose-100 p-4">
+    <p className="flex items-center justify-center gap-2 rounded-lg bg-rose-100 p-4 text-sm">
       <CarbonNeutral />
-      This is a <span className="font-medium">carbon-neutral</span> delivery
+      <span>
+        This is a <span className="font-medium">carbon-neutral</span> delivery
+      </span>
     </p>
   );
 };

@@ -38,7 +38,11 @@ export const ResumeList = () => {
   return (
     <ul className="space-y-4">
       {mockData.map((dessert) => (
-        <ResumeListItem data={dessert} handleClick={() => {}} />
+        <ResumeListItem
+          key={dessert.name}
+          data={dessert}
+          handleClick={() => {}}
+        />
       ))}
     </ul>
   );
@@ -62,7 +66,7 @@ const ResumeListItem = ({ data, handleClick }: ResumeListItemProps) => {
             <span aria-hidden="true">x</span>
           </span>
 
-          <div className="flex gap-2">
+          <span className="flex gap-2">
             <span className="text-rose-500">
               <span aria-hidden="true">@</span>
               <span className="sr-only">Unit price:</span>
@@ -73,7 +77,7 @@ const ResumeListItem = ({ data, handleClick }: ResumeListItemProps) => {
               <span className="sr-only">Total price:</span>
               {formattedTotal}
             </span>
-          </div>
+          </span>
         </p>
       </div>
       <button
