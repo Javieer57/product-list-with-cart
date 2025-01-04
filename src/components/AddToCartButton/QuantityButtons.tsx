@@ -4,7 +4,7 @@ import { Plus } from "../icons/Plus";
 
 interface Props {
   name: string;
-  handleClick: (quantity: number) => void;
+  handleClick: () => void;
 }
 
 const buttonStyles =
@@ -16,7 +16,7 @@ export const DecrementButton = memo(({ name, handleClick }: Props) => {
     <button
       className={buttonStyles}
       aria-label={`Remove one ${name} from cart`}
-      onClick={() => handleClick(-1)}
+      onClick={handleClick}
     >
       <Minus className={buttonIconStyles} />
     </button>
@@ -28,7 +28,7 @@ export const IncrementButton = memo(({ name, handleClick }: Props) => {
     <button
       className={buttonStyles}
       aria-label={`Add one more ${name} to cart`}
-      onClick={() => handleClick(1)}
+      onClick={handleClick}
     >
       <Plus className={buttonIconStyles} />
     </button>

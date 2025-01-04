@@ -1,22 +1,26 @@
+import { useProductsContextActions } from "../../hooks/useProductsContextActions";
+import { DessertData } from "../../types/dessert";
 import { DecrementButton, IncrementButton } from "./QuantityButtons";
 
 interface Props {
-  name: string;
-  quantity: number;
-  handleClick: (quantity: number) => void;
+  data: DessertData;
 }
 
-export const CartQuantityButton = ({ name, quantity, handleClick }: Props) => {
+export const CartQuantityButton = ({ data }: Props) => {
+  const { name } = data;
+  const { quantity, addProduct, removeProduct } =
+    useProductsContextActions(data);
+
   return (
-    <div className="rounded-full bg-red py-2 px-6 gap-2 flex w-full max-w-44 text-white items-center font-semibold">
-      <DecrementButton name={name} handleClick={handleClick} />
+    <div className="flex w-full max-w-44 items-center gap-2 rounded-full bg-red px-6 py-2 font-semibold text-white">
+      <DecrementButton name={name} handleClick={removeProduct} />
 
       <p className="grow text-center">
         <span className="sr-only">{`Quantity of ${name} in cart:`}</span>
         {quantity}
       </p>
 
-      <IncrementButton name={name} handleClick={handleClick} />
+      <IncrementButton name={name} handleClick={addProduct} />
     </div>
   );
 };
