@@ -1,28 +1,17 @@
-import { useCallback, useState } from "react";
 import { CartQuantityButton } from "./CartQuantityButton";
 import { AddToCartButton } from "./AddToCartButton";
+import { DessertData } from "../../types/dessert";
+import { useProductsContextActions } from "../../hooks/useProductsContextActions";
 
-interface Props {
-  name: string;
-}
-
-const AddToCartWrapper = ({ name }: Props) => {
-  const [quantity, setQuantity] = useState<number>(0);
-
-  const handleClick = useCallback((quantity: number) => {
-    setQuantity((prev) => Math.max(prev + quantity, 0));
-  }, []);
+const AddToCartWrapper = ({ data }: { data: DessertData }) => {
+  const { quantity } = useProductsContextActions(data);
 
   return (
-    <div className="absolute bottom-0 w-full flex justify-center">
+    <div className="absolute bottom-0 flex w-full justify-center">
       {quantity === 0 ? (
-        <AddToCartButton name={name} handleClick={handleClick} />
+        <AddToCartButton data={data} />
       ) : (
-        <CartQuantityButton
-          name={name}
-          handleClick={handleClick}
-          quantity={quantity}
-        />
+        <CartQuantityButton data={data} />
       )}
     </div>
   );

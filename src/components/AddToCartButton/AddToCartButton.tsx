@@ -1,14 +1,18 @@
+import { useProductsContextActions } from "../../hooks/useProductsContextActions";
+import { DessertData } from "../../types/dessert";
+
 interface Props {
-  name: string;
-  handleClick: (quantity: number) => void;
+  data: DessertData;
 }
 
-export const AddToCartButton = ({ name, handleClick }: Props) => {
+export const AddToCartButton = ({ data }: Props) => {
+  const { addProduct } = useProductsContextActions(data);
+
   return (
     <button
-      className="rounded-full bg-white py-2 px-6 flex gap-2 border w-full max-w-44 border-red text-rose-900 hover:text-red items-center font-semibold transition-colors"
-      aria-label={`Add ${name} to cart`}
-      onClick={() => handleClick(1)}
+      className="flex w-full max-w-44 items-center gap-2 rounded-full border border-red bg-white px-6 py-2 font-semibold text-rose-900 transition-colors hover:text-red"
+      aria-label={`Add ${data.name} to cart`}
+      onClick={addProduct}
     >
       <img src="/assets/images/icon-add-to-cart.svg" alt="" aria-hidden />
       Add to Cart

@@ -1,16 +1,19 @@
-import { DessertData, Image } from "../types/dessert";
+import { DessertData } from "../types/dessert";
+import { currencyFormatted } from "../utils/currency";
 import AddToCartWrapper from "./AddToCartButton";
 
 export const DessertCard = ({ data }: { data: DessertData }) => {
   return (
     <article className="space-y-4">
-      <DessertCardImage image={data.image} name={data.name} />
+      <DessertCardImage data={data} />
       <DessertCardDetails {...data} />
     </article>
   );
 };
 
-const DessertCardImage = ({ image, name }: { image: Image; name: string }) => {
+const DessertCardImage = ({ data }: { data: DessertData }) => {
+  const { image, name } = data;
+
   return (
     <div className="relative pb-5">
       <picture>
@@ -19,26 +22,21 @@ const DessertCardImage = ({ image, name }: { image: Image; name: string }) => {
         <img
           src={image.desktop}
           alt={name}
-          className="rounded-lg h-52 w-full sm:h-auto object-cover"
+          className="h-52 w-full rounded-lg object-cover sm:h-auto"
         />
       </picture>
 
-      <AddToCartWrapper name={name} />
+      <AddToCartWrapper data={data} />
     </div>
   );
 };
 
-const DessertCardDetails = (data: DessertData) => {
-  const formattedPrice = new Intl.NumberFormat("es-MX", {
-    style: "currency",
-    currency: "MXN",
-  }).format(data.price);
-
+const DessertCardDetails = ({ category, name, price }: DessertData) => {
   return (
     <div className="space-y-1">
-      <p className="text-sm text-rose-500">{data.category}</p>
-      <h3 className="font-semibold text-rose-900">{data.name}</h3>
-      <p className="text-red font-semibold">{formattedPrice}</p>
+      <p className="text-sm text-rose-500">{category}</p>
+      <h3 className="font-semibold text-rose-900">{name}</h3>
+      <p className="font-semibold text-red">{currencyFormatted(price)}</p>
     </div>
   );
 };
