@@ -1,12 +1,16 @@
-type Product = { id: number; name: string; quantity: number };
+import { DessertData } from "../types/dessert";
+
+type Product = DessertData & {
+  quantity: number;
+};
 export type State = {
   selectedProducts: Record<number, Product>;
 };
 export type Action =
-  | { type: "ADD_PRODUCT"; product: Product }
+  | { type: "ADD_PRODUCT"; product: DessertData }
   | { type: "REMOVE_PRODUCT"; productId: number };
 
-export const initialState: State = { selectedProducts: [] };
+export const initialState: State = { selectedProducts: {} };
 
 export function productsReducer(state: State, action: Action): State {
   switch (action.type) {
@@ -19,19 +23,10 @@ export function productsReducer(state: State, action: Action): State {
           ...state.selectedProducts,
           [action.product.id]: {
             ...action.product,
-            quantity: existingItem ? action.product.quantity + 1 : 1,
+            quantity: existingItem ? existingItem.quantity + 1 : 1,
           },
         },
       };
-    // return {
-    //   ...state,
-    //   selectedProducts: {
-    //     ...state.selectedProducts,
-    //     [action.product.id]: existingItem
-    //       ? { ...existingItem, quantity: existingItem.quantity + 1 }
-    //       : { ...action.product, quantity: 1 },
-    //   },
-    // };
     case "REMOVE_PRODUCT":
       const { [action.productId]: removedItem, ...rest } =
         state.selectedProducts;

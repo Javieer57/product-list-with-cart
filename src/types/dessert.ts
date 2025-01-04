@@ -1,4 +1,5 @@
 export interface DessertData {
+  id: number;
   image: Image;
   name: string;
   category: string;
