@@ -1,5 +1,5 @@
 import { DessertsGrid } from "./components/DessertsGrid";
-import { Resume } from "./components/Resume";
+import { Resume } from "./components/resume/Resume";
 import { ProductsProvider } from "./contexts/ProductsContext";
 
 function App() {

@@ -1,8 +1,8 @@
-import { useProductsContext } from "../hooks/useProductsContext";
-import { useProductsContextActions } from "../hooks/useProductsContextActions";
-import { Product } from "../store/productsReducer";
-import { currencyFormatted } from "../utils/currency";
-import { Remove } from "./icons/Remove";
+import { useProductsContext } from "../../hooks/useProductsContext";
+import { useProductsContextActions } from "../../hooks/useProductsContextActions";
+import { Product } from "../../store/productsReducer";
+import { currencyFormatted } from "../../utils/currency";
+import { Remove } from "../icons/Remove";
 
 export const ResumeList = () => {
   const { state } = useProductsContext();
