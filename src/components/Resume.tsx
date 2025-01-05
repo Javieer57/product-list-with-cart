@@ -1,10 +1,13 @@
+import { useProductsContext } from "../hooks/useProductsContext";
 import { CarbonNeutral } from "./icons/CarbonNeutral";
 import { ResumeList } from "./ResumeList";
 
 export const Resume = () => {
   return (
     <div className="space-y-6 rounded-lg border bg-white p-6">
-      <h2 className="text-2xl font-bold text-red">Your Cart</h2>
+      <h2 className="text-2xl font-bold text-red">
+        Your Cart <ResumeCounter />
+      </h2>
 
       <ResumeList />
 
@@ -30,5 +33,17 @@ const CarbonNeutralAdvertise = () => {
         This is a <span className="font-medium">carbon-neutral</span> delivery
       </span>
     </p>
+  );
+};
+
+const ResumeCounter = () => {
+  const { state } = useProductsContext();
+
+  return (
+    <>
+      <span className="sr-only">has</span>(
+      {Object.values(state.selectedProducts).length})
+      <span className="sr-only">items</span>
+    </>
   );
 };

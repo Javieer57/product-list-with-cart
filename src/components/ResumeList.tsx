@@ -1,58 +1,27 @@
+import { useProductsContext } from "../hooks/useProductsContext";
+import { useProductsContextActions } from "../hooks/useProductsContextActions";
+import { Product } from "../store/productsReducer";
 import { currencyFormatted } from "../utils/currency";
 import { Remove } from "./icons/Remove";
 
-interface DessertResumeData {
-  name: string;
-  quantity: number;
-  price: number;
-  total: number;
-}
-
-interface ResumeListItemProps {
-  data: DessertResumeData;
-  handleClick: () => void;
-}
-
-const mockData: DessertResumeData[] = [
-  {
-    name: "Classic Tiramisu",
-    quantity: 1,
-    price: 5.5,
-    total: 5.5,
-  },
-  {
-    name: "Vanilla Bean Crème Brûlée",
-    quantity: 4,
-    price: 7.0,
-    total: 28.0,
-  },
-  {
-    name: "Vanilla Panna Cotta",
-    quantity: 2,
-    price: 6.5,
-    total: 13.0,
-  },
-];
-
 export const ResumeList = () => {
+  const { state } = useProductsContext();
+
   return (
     <ul className="space-y-4">
-      {mockData.map((dessert) => (
-        <ResumeListItem
-          key={dessert.name}
-          data={dessert}
-          handleClick={() => {}}
-        />
+      {Object.values(state.selectedProducts).map((dessert) => (
+        <ResumeListItem key={dessert.name} data={dessert} />
       ))}
     </ul>
   );
 };
 
-const ResumeListItem = ({ data, handleClick }: ResumeListItemProps) => {
-  const { name, quantity, price, total } = data;
+const ResumeListItem = ({ data }: { data: Product }) => {
+  const { name, quantity, price } = data;
+  const { deleteProduct } = useProductsContextActions(data);
 
   const formattedPrice = currencyFormatted(price);
-  const formattedTotal = currencyFormatted(total);
+  const formattedTotal = currencyFormatted(price * quantity);
 
   return (
     <li className="flex items-center justify-between gap-2 border-b border-rose-100 pb-4">
@@ -83,7 +52,7 @@ const ResumeListItem = ({ data, handleClick }: ResumeListItemProps) => {
       <button
         aria-label="Remove Classic Tiramisu from cart"
         className="flex h-5 w-5 items-center justify-center rounded-full border border-rose-300 text-center text-rose-300 transition-colors hover:border-rose-900 hover:text-rose-900 focus:border-rose-900 focus:text-rose-900"
-        onClick={handleClick}
+        onClick={deleteProduct}
       >
         <Remove />
       </button>
