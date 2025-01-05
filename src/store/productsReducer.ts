@@ -1,6 +1,6 @@
 import { DessertData } from "../types/dessert";
 
-type Product = DessertData & {
+export type Product = DessertData & {
   quantity: number;
 };
 export type State = {
@@ -8,7 +8,8 @@ export type State = {
 };
 export type Action =
   | { type: "ADD_PRODUCT"; product: DessertData }
-  | { type: "REMOVE_PRODUCT"; productId: number };
+  | { type: "REMOVE_PRODUCT"; productId: number }
+  | { type: "DELETE_PRODUCT"; productId: number };
 
 export const initialState: State = { selectedProducts: {} };
 
@@ -48,6 +49,16 @@ export function productsReducer(state: State, action: Action): State {
         ...state,
         selectedProducts: {
           ...rest,
+        },
+      };
+    case "DELETE_PRODUCT":
+      const { [action.productId]: deletedItem, ...restItems } =
+        state.selectedProducts;
+
+      return {
+        ...state,
+        selectedProducts: {
+          ...restItems,
         },
       };
     default:

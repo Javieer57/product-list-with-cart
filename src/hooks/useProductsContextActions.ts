@@ -12,11 +12,15 @@ export const useProductsContextActions = (data: DessertData) => {
 
   const addProduct = useCallback(() => {
     dispatch({ type: "ADD_PRODUCT", product: data });
-  }, [dispatch, data]);
+  }, []);
 
   const removeProduct = useCallback(() => {
     dispatch({ type: "REMOVE_PRODUCT", productId: data.id });
-  }, [dispatch, data]);
+  }, []);
 
-  return { quantity, addProduct, removeProduct };
+  const deleteProduct = useCallback(() => {
+    dispatch({ type: "DELETE_PRODUCT", productId: data.id });
+  }, []);
+
+  return { quantity, addProduct, removeProduct, deleteProduct };
 };
