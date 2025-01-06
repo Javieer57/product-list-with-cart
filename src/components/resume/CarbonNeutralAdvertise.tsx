@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { CarbonNeutral } from "../icons/CarbonNeutral";
 
-export const CarbonNeutralAdvertise = () => {
+export const CarbonNeutralAdvertise = memo(() => {
   return (
     <p className="flex items-center justify-center gap-2 rounded-lg bg-rose-100 p-4 text-sm">
       <CarbonNeutral />
@@ -9,4 +10,4 @@ export const CarbonNeutralAdvertise = () => {
       </span>
     </p>
   );
-};
+});
