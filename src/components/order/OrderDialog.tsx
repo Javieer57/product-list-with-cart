@@ -42,13 +42,7 @@ export const OrderDialog = ({
           </div>
         </div>
       </div>
-
-      <Button
-        className="w-full rounded-full bg-red p-4 font-medium text-white"
-        onClick={close}
-      >
-        Start New Order
-      </Button>
+      <StartNewOrderButton close={close} />
     </DialogWrapper>
   );
 };
@@ -80,5 +74,16 @@ const DialogWrapper = ({
         </div>
       </div>
     </Dialog>
+  );
+};
+
+const StartNewOrderButton = ({ close }: { close: () => void }) => {
+  return (
+    <Button
+      className="w-full rounded-full bg-red p-4 font-medium text-white"
+      onClick={close}
+    >
+      Start New Order
+    </Button>
   );
 };
