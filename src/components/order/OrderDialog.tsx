@@ -8,6 +8,7 @@ import {
 import { OrderList } from "./OrderList";
 import { ReactNode } from "react";
 import { ResumeTotal } from "../resume/ResumeTotal";
+import { useProductsContext } from "../../hooks/useProductsContext";
 
 export const OrderDialog = ({
   isOpen,
@@ -78,10 +79,17 @@ const DialogWrapper = ({
 };
 
 const StartNewOrderButton = ({ close }: { close: () => void }) => {
+  const { dispatch } = useProductsContext();
+
+  const handleClick = () => {
+    dispatch({ type: "RESET_CART" });
+    close();
+  };
+
   return (
     <Button
       className="w-full rounded-full bg-red p-4 font-medium text-white"
-      onClick={close}
+      onClick={handleClick}
     >
       Start New Order
     </Button>
