@@ -1,3 +1,4 @@
+import { useProductsContextActions } from "../hooks/useProductsContextActions";
 import { DessertData } from "../types/dessert";
 import { currencyFormatted } from "../utils/currency";
 import AddToCartWrapper from "./AddToCartButton";
@@ -13,6 +14,7 @@ export const DessertCard = ({ data }: { data: DessertData }) => {
 
 const DessertCardImage = ({ data }: { data: DessertData }) => {
   const { image, name } = data;
+  const { quantity } = useProductsContextActions(data);
 
   return (
     <div className="relative pb-5">
@@ -22,7 +24,7 @@ const DessertCardImage = ({ data }: { data: DessertData }) => {
         <img
           src={image.desktop}
           alt={name}
-          className="h-52 w-full rounded-lg object-cover sm:h-auto"
+          className={`h-52 w-full rounded-lg border-2 border-red object-cover transition-colors sm:h-auto ${quantity > 0 ? "border-opacity-100" : "border-opacity-0"}`}
         />
       </picture>
 

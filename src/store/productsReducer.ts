@@ -10,7 +10,8 @@ export type State = {
 export type Action =
   | { type: "ADD_PRODUCT"; product: DessertData }
   | { type: "REMOVE_PRODUCT"; productId: number }
-  | { type: "DELETE_PRODUCT"; productId: number };
+  | { type: "DELETE_PRODUCT"; productId: number }
+  | { type: "RESET_CART" };
 
 export const initialState: State = { selectedProducts: {}, total: 0 };
 
@@ -66,6 +67,12 @@ export function productsReducer(state: State, action: Action): State {
           ...restItems,
         },
         total: state.total - deletedItem.price * deletedItem.quantity,
+      };
+    case "RESET_CART":
+      return {
+        ...state,
+        selectedProducts: {},
+        total: 0,
       };
     default:
       throw new Error("Acción no reconocida");
